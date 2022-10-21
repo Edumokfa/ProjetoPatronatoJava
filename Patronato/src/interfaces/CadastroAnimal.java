@@ -5,6 +5,11 @@
  */
 package interfaces;
 
+import Utils.StringUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
 import patronato.Comunicacao;
 
 /**
@@ -14,6 +19,7 @@ import patronato.Comunicacao;
 public class CadastroAnimal extends javax.swing.JInternalFrame {
 
     Comunicacao com = new Comunicacao();
+    DefaultTableModel tb = new DefaultTableModel();
 
     /**
      * Creates new form NewJInternalFrame
@@ -73,6 +79,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Pesquisar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Excluir");
 
@@ -152,11 +163,43 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String insere = String.format("INSERT INTO ANIMAL (ANI_IDADE, ANI_NOME, ANI_PORTE, ANI_COMPORTAMENTO, ANI_ANDADURA) VALUES (%s,'%s','%s','%s','%s')", 
-                txIdade.getText(),txNome.getText(),cbPorte.getSelectedItem().toString(),txComportamento.getText(),txAndadura.getText());
-        
+        String insere = String.format("INSERT INTO ANIMAL (ANI_IDADE, ANI_NOME, ANI_PORTE, ANI_COMPORTAMENTO, ANI_ANDADURA) VALUES (%s,'%s','%s','%s','%s')",
+                txIdade.getText(), txNome.getText(), cbPorte.getSelectedItem().toString(), txComportamento.getText(), txAndadura.getText());
+
         com.executarUpdate(insere);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        StringBuilder busca = new StringBuilder();
+        busca.append("SELECT * FROM ANIMAL");
+        busca.append(" WHERE ANI_PORTE = '").append(cbPorte.getSelectedItem().toString()).append("'");
+        if (StringUtil.isNotNullOrEmpty(txIdade.getText())) {
+            busca.append(" AND ANI_IDADE = ").append(txIdade.getText());
+        }
+        if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
+            busca.append(" AND ANI_NOME = '").append(txNome.getText()).append("'");
+        }
+        if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
+            busca.append(" AND ANI_COMPORTAMENTO = '").append(txComportamento.getText()).append("'");
+        }
+        if (StringUtil.isNotNullOrEmpty(txAndadura.getText())) {
+            busca.append(" AND ANI_ANDADURA =' ").append(txAndadura.getText()).append("'");
+        }
+        Map<List<String>, List<List<String>>> retorno = com.executarSql(busca.toString());
+        for (Map.Entry<List<String>, List<List<String>>> valores : retorno.entrySet()) {
+            for (String coluna : valores.getKey()) {
+                tb.addColumn(coluna);
+            }
+            for (List<String> list : valores.getValue()) {
+                String[] linha =  new String[list.size()];
+                for (int i = 0; i < list.size(); i++) {
+                    linha[i] = list.get(i);
+                }
+                tb.addRow(linha);
+            }
+        }
+        jTable1.setModel(tb);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

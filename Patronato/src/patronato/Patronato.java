@@ -1,5 +1,7 @@
 package patronato;
 
+import interfaces.InterfacePrincipal;
+
 /**
  *
  * @author Computação
@@ -7,7 +9,8 @@ package patronato;
 public class Patronato {
 
     public static void main(String[] args) {
-
+        InterfacePrincipal inte = new InterfacePrincipal();
+        inte.setVisible(true);
     }
     
 }

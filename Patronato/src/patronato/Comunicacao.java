@@ -29,25 +29,28 @@ public class Comunicacao {
         }
     }
 
-    public Map<String, List<String>> executarSql(String sql) {
-        Map<String, List<String>> mapa = new HashMap<>();
+    public Map<List<String>, List<List<String>>> executarSql(String sql) {
+        Map<List<String>, List<List<String>>> mapa = new HashMap<>();
         Connection conn = conectar();
         try {
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
             ResultSetMetaData rsmd = rs.getMetaData();
             int numeroColunas = rsmd.getColumnCount();
+            List<String> nomesColunas = new ArrayList<>();
+            List<List<String>> campos = new ArrayList<>();
             for (int j = 1; j <= numeroColunas; j++) {
-                String Colkey = rsmd.getColumnName(j);
-                mapa.put(Colkey, new ArrayList<>());
+                String colKey = rsmd.getColumnName(j);
+                nomesColunas.add(colKey);
             }
             while (rs.next()) {
-                for (Map.Entry<String, List<String>> e : mapa.entrySet()) {
-                    String campo = e.getKey();
-                    List<String> valores = e.getValue();
-                    valores.add(rs.getString(campo));
+                List<String> valores = new ArrayList<>();
+                for (String e : nomesColunas) {
+                    valores.add(rs.getString(e));
                 }
+                campos.add(valores);
             }
+            mapa.put(nomesColunas, campos);
         } catch (SQLException e) {
             System.err.println(e);
             return null;
@@ -60,12 +63,12 @@ public class Comunicacao {
         }
         return mapa;
     }
-    
-    public void executarUpdate(String sql){
+
+    public void executarUpdate(String sql) {
         Connection conn = conectar();
         try {
             conn.createStatement().executeUpdate(sql);
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             System.err.println(e);
         } finally {
             try {
