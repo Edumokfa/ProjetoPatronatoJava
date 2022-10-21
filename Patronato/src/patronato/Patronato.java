@@ -1,16 +1,16 @@
 package patronato;
 
-import interfaces.InterfacePrincipal;
+import interfaces.interfacePrincipal;
 
 /**
  *
- * @author Computação
+ * @author Mokfa
  */
 public class Patronato {
 
     public static void main(String[] args) {
-        InterfacePrincipal inte = new InterfacePrincipal();
+        interfacePrincipal inte = new interfacePrincipal();
         inte.setVisible(true);
     }
-    
+
 }

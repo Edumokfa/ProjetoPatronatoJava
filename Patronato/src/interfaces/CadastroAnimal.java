@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import Utils.StringUtil;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
 import patronato.Comunicacao;
 
 /**
@@ -19,13 +12,17 @@ import patronato.Comunicacao;
 public class CadastroAnimal extends javax.swing.JInternalFrame {
 
     Comunicacao com = new Comunicacao();
-    DefaultTableModel tb = new DefaultTableModel();
 
-    /**
-     * Creates new form NewJInternalFrame
-     */
     public CadastroAnimal() {
         initComponents();
+        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ANIMAL");
+
+        ListSelectionModel model = jTable1.getSelectionModel();
+        model.addListSelectionListener((ListSelectionEvent event) -> {
+            if (!model.isSelectionEmpty()) {
+                txCodigo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +44,8 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         cbPorte = new javax.swing.JComboBox<>();
+        txCodigo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,8 +85,18 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         });
 
         jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         cbPorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "M", "G" }));
+
+        txCodigo.setEditable(false);
+        txCodigo.setOpaque(true);
+
+        jLabel6.setText("Codigo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,24 +113,28 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
-                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txAndadura, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6)
+                                .addComponent(cbPorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel1))
-                                    .addGap(18, 18, 18))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cbPorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(txNome, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addComponent(txComportamento)))))
+                                    .addGap(14, 14, 14)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(txNome)))
+                                .addComponent(txComportamento, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,14 +142,19 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -163,10 +181,17 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String insere = String.format("INSERT INTO ANIMAL (ANI_IDADE, ANI_NOME, ANI_PORTE, ANI_COMPORTAMENTO, ANI_ANDADURA) VALUES (%s,'%s','%s','%s','%s')",
-                txIdade.getText(), txNome.getText(), cbPorte.getSelectedItem().toString(), txComportamento.getText(), txAndadura.getText());
-
-        com.executarUpdate(insere);
+        if (StringUtil.isNotNullOrEmpty(txCodigo.getText())) {
+            String insere = String.format("UPDATE ANIMAL SET ANI_IDADE = %s, ANI_NOME = '%s', ANI_PORTE = '%s', ANI_COMPORTAMENTO = '%s', ANI_ANDADURA = '%s' WHERE ANI_ID = %s",
+                    txIdade.getText(), txNome.getText(), cbPorte.getSelectedItem().toString(), txComportamento.getText(), txAndadura.getText(), txCodigo.getText());
+            com.executarUpdate(insere);
+        } else {
+            String insere = String.format("INSERT INTO ANIMAL (ANI_IDADE, ANI_NOME, ANI_PORTE, ANI_COMPORTAMENTO, ANI_ANDADURA) VALUES (%s,'%s','%s','%s','%s')",
+                    txIdade.getText(), txNome.getText(), cbPorte.getSelectedItem().toString(), txComportamento.getText(), txAndadura.getText());
+            com.executarUpdate(insere);
+        }
+        limparCampos();
+        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ANIMAL");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -177,30 +202,33 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
             busca.append(" AND ANI_IDADE = ").append(txIdade.getText());
         }
         if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
-            busca.append(" AND ANI_NOME = '").append(txNome.getText()).append("'");
+            busca.append(" AND ANI_NOME LIKE '%").append(txNome.getText()).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
-            busca.append(" AND ANI_COMPORTAMENTO = '").append(txComportamento.getText()).append("'");
+            busca.append(" AND ANI_COMPORTAMENTO LIKE '%").append(txComportamento.getText()).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txAndadura.getText())) {
-            busca.append(" AND ANI_ANDADURA =' ").append(txAndadura.getText()).append("'");
+            busca.append(" AND ANI_ANDADURA LIKE '%").append(txAndadura.getText()).append("%'");
         }
-        Map<List<String>, List<List<String>>> retorno = com.executarSql(busca.toString());
-        for (Map.Entry<List<String>, List<List<String>>> valores : retorno.entrySet()) {
-            for (String coluna : valores.getKey()) {
-                tb.addColumn(coluna);
-            }
-            for (List<String> list : valores.getValue()) {
-                String[] linha =  new String[list.size()];
-                for (int i = 0; i < list.size(); i++) {
-                    linha[i] = list.get(i);
-                }
-                tb.addRow(linha);
-            }
-        }
-        jTable1.setModel(tb);
+        com.buscaValoresEPreencheTabela(jTable1, busca.toString());
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void limparCampos() {
+        txAndadura.setText("");
+        txCodigo.setText("");
+        txComportamento.setText("");
+        txIdade.setText("");
+        txNome.setText("");
+        cbPorte.setSelectedIndex(0);
+    }
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (StringUtil.isNotNullOrEmpty(txCodigo.getText())) {
+            com.executarUpdate("DELETE FROM ANIMAL WHERE ANI_ID = " + txCodigo.getText());
+            com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ANIMAL");
+            limparCampos();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbPorte;
@@ -212,9 +240,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txAndadura;
+    private javax.swing.JTextField txCodigo;
     private javax.swing.JTextField txComportamento;
     private javax.swing.JTextField txIdade;
     private javax.swing.JTextField txNome;

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -77,5 +79,23 @@ public class Comunicacao {
                 System.out.println(e);
             }
         }
+    }
+
+    public void buscaValoresEPreencheTabela(JTable tabela, String sql) {
+        Map<List<String>, List<List<String>>> retorno = executarSql(sql);
+        DefaultTableModel tb = new DefaultTableModel();
+        for (Map.Entry<List<String>, List<List<String>>> valores : retorno.entrySet()) {
+            for (String coluna : valores.getKey()) {
+                tb.addColumn(coluna);
+            }
+            for (List<String> list : valores.getValue()) {
+                String[] linha = new String[list.size()];
+                for (int i = 0; i < list.size(); i++) {
+                    linha[i] = list.get(i);
+                }
+                tb.addRow(linha);
+            }
+        }
+        tabela.setModel(tb);
     }
 }
