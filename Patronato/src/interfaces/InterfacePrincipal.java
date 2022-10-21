@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author Pedro
  */
-public class InterfacePrincipal extends javax.swing.JFrame {
+public class interfacePrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form interfacePrincipal
@@ -28,7 +28,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     List lista = new ArrayList();
     List lista2 = new ArrayList();
 
-    public InterfacePrincipal() {
+    public interfacePrincipal() {
         initComponents();
     }
 
@@ -397,10 +397,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void praticanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_praticanteMouseClicked
         // TODO add your handling code here:
-        setColor(praticante);
-        resetColor(funcionario);
-        resetColor(animal);
-        resetColor(atividade);
+            setColor(praticante);
+            resetColor(funcionario);
+            resetColor(animal);
+            resetColor(atividade);
     }//GEN-LAST:event_praticanteMouseClicked
 
     private void praticanteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_praticanteMouseEntered
@@ -415,13 +415,13 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void animalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_animalMouseClicked
         // TODO add your handling code here:
-        setColor(animal);
-        resetColor(funcionario);
-        resetColor(praticante);
-        resetColor(atividade);
-        CadastroAnimal cadastroAnimal = new CadastroAnimal();
-        jDesktopPane1.add(cadastroAnimal);
-        cadastroAnimal.setVisible(true);
+            setColor(animal);
+            resetColor(funcionario);
+            resetColor(praticante);
+            resetColor(atividade);
+            CadastroAnimal cadastroAnimal = new CadastroAnimal();
+            jDesktopPane1.add(cadastroAnimal);
+            cadastroAnimal.setVisible(true);
     }//GEN-LAST:event_animalMouseClicked
 
     private void animalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_animalMouseEntered
@@ -440,10 +440,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void atividadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atividadeMouseClicked
         // TODO add your handling code here:
-        setColor(atividade);
-        resetColor(funcionario);
-        resetColor(animal);
-        resetColor(praticante);
+            setColor(atividade);
+            resetColor(funcionario);
+            resetColor(animal);
+            resetColor(praticante);
     }//GEN-LAST:event_atividadeMouseClicked
 
     private void atividadeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atividadeMouseEntered
@@ -460,7 +460,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
-        jDesktopPane1.removeAll();
+            jDesktopPane1.removeAll();
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void materialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMouseClicked
@@ -496,23 +496,21 @@ public class InterfacePrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(interfacePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfacePrincipal().setVisible(true);
+                new interfacePrincipal().setVisible(true);
             }
         });
     }
