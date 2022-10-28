@@ -31,6 +31,19 @@ public class Comunicacao {
         }
     }
 
+    public Integer getCodigo(String sql, String campoCod){
+        Connection conn = conectar();
+        Integer codigo = 0;
+        try {
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            while (rs.next()) {
+                codigo = rs.getInt(campoCod);
+            }
+        }catch(Exception e){
+        }
+        return codigo;
+    }
+    
     public Map<List<String>, List<List<String>>> executarSql(String sql) {
         Map<List<String>, List<List<String>>> mapa = new HashMap<>();
         Connection conn = conectar();
