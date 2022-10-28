@@ -68,10 +68,12 @@ public class interfacePrincipal extends javax.swing.JFrame {
         atividade = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         material = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        sessao = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,7 +130,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        slidebotões.add(funcionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 200, 110));
+        slidebotões.add(funcionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         praticante.setBackground(new java.awt.Color(146, 165, 146));
         praticante.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,7 +172,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        slidebotões.add(praticante, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 110));
+        slidebotões.add(praticante, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 200, 110));
 
         animal.setBackground(new java.awt.Color(146, 165, 146));
         animal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,7 +217,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        slidebotões.add(animal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 200, 110));
+        slidebotões.add(animal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 200, 110));
 
         atividade.setBackground(new java.awt.Color(146, 165, 146));
         atividade.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -260,27 +262,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        slidebotões.add(atividade, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 200, 110));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
-
-        slidebotões.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
+        slidebotões.add(atividade, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 200, 110));
 
         material.setBackground(new java.awt.Color(146, 165, 146));
         material.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,7 +307,52 @@ public class interfacePrincipal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        slidebotões.add(material, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 200, 110));
+        slidebotões.add(material, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 200, 110));
+
+        sessao.setBackground(new java.awt.Color(146, 165, 146));
+        sessao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sessaoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sessaoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                sessaoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                sessaoMousePressed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Sessão");
+
+        jLabel18.setMaximumSize(new java.awt.Dimension(550, 512));
+
+        javax.swing.GroupLayout sessaoLayout = new javax.swing.GroupLayout(sessao);
+        sessao.setLayout(sessaoLayout);
+        sessaoLayout.setHorizontalGroup(
+            sessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sessaoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
+        );
+        sessaoLayout.setVerticalGroup(
+            sessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sessaoLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(sessaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+
+        slidebotões.add(sessao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 200, 110));
 
         Bg.add(slidebotões, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 660));
 
@@ -335,14 +362,14 @@ public class interfacePrincipal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addGap(0, 1160, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        Bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1010, 660));
+        Bg.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1160, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -365,7 +392,9 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(animal);
         resetColor(praticante);
         resetColor(atividade);
-
+        resetColor(material);
+        resetColor(sessao);
+        resetColor(funcionario);
     }//GEN-LAST:event_funcionarioMouseClicked
 
     private void funcionarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionarioMouseEntered
@@ -391,7 +420,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_funcionarioMouseReleased
 
     private void praticanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_praticanteMouseClicked
-        // TODO add your handling code here:  
+        // TODO add your handling code here:
         setColor(praticante);
         resetColor(funcionario);
         resetColor(animal);
@@ -399,6 +428,8 @@ public class interfacePrincipal extends javax.swing.JFrame {
         CadastroPraticante cadastroPraticante = new CadastroPraticante();
         jDesktopPane1.add(cadastroPraticante);
         cadastroPraticante.setVisible(true);
+        resetColor(praticante);
+        resetColor(material);
     }//GEN-LAST:event_praticanteMouseClicked
 
     private void praticanteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_praticanteMouseEntered
@@ -418,6 +449,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(praticante);
         resetColor(atividade);
         resetColor(material);
+        resetColor(sessao);
         CadastroAnimal cadastroAnimal = new CadastroAnimal();
         jDesktopPane1.add(cadastroAnimal);
         cadastroAnimal.setVisible(true);
@@ -443,6 +475,11 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(funcionario);
         resetColor(animal);
         resetColor(praticante);
+        resetColor(material);
+        resetColor(sessao);
+        CadastroAtividade cadastroAtividade = new CadastroAtividade();
+        jDesktopPane1.add(cadastroAtividade);
+        cadastroAtividade.setVisible(true);
     }//GEN-LAST:event_atividadeMouseClicked
 
     private void atividadeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atividadeMouseEntered
@@ -461,7 +498,6 @@ public class interfacePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
     }//GEN-LAST:event_jPanel1MouseClicked
-
     private void materialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMouseClicked
         // TODO add your handling code here:]
         setColor(material);
@@ -469,6 +505,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(animal);
         resetColor(praticante);
         resetColor(atividade);
+        resetColor(sessao);
         CadastroMaterial cadastroMaterial = new CadastroMaterial();
         jDesktopPane1.add(cadastroMaterial);
         cadastroMaterial.setVisible(true);
@@ -485,6 +522,32 @@ public class interfacePrincipal extends javax.swing.JFrame {
     private void materialMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_materialMousePressed
+
+    private void sessaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sessaoMouseClicked
+        // TODO add your handling code here:
+        setColor(sessao);
+        resetColor(funcionario);
+        resetColor(animal);
+        resetColor(praticante);
+        resetColor(atividade);
+        resetColor(material);
+        
+        MovimentoSessao movimentoSessao = new MovimentoSessao();
+        jDesktopPane1.add(movimentoSessao);
+        movimentoSessao.setVisible(true);
+    }//GEN-LAST:event_sessaoMouseClicked
+
+    private void sessaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sessaoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sessaoMouseEntered
+
+    private void sessaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sessaoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sessaoMouseExited
+
+    private void sessaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sessaoMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sessaoMousePressed
 
     /**
      * @param args the command line arguments
@@ -533,14 +596,16 @@ public class interfacePrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel material;
     private javax.swing.JPanel praticante;
+    private javax.swing.JPanel sessao;
     private javax.swing.JPanel slidebotões;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,23 +14,24 @@ import patronato.Comunicacao;
  *
  * @author Computação
  */
-public class CadastroMaterial extends javax.swing.JInternalFrame {
+public class CadastroAtividade extends javax.swing.JInternalFrame {
 
     Comunicacao com = new Comunicacao();
 
     /**
      * Creates new form NewJInternalFrame
      */
-    public CadastroMaterial() {
+    public CadastroAtividade() {
         initComponents();
         
-        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM MATERIAL");
+        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ATIVIDADE");
 
         ListSelectionModel model = jTable1.getSelectionModel();
         model.addListSelectionListener((ListSelectionEvent event) -> {
             if (!model.isSelectionEmpty()) {
                 this.txCod.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
                 this.txDesc.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                this.txDura.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
             }
         });
     }
@@ -49,6 +50,8 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
         labelRegistro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        txDura = new javax.swing.JTextField();
 
         txCod.setEnabled(false);
         txCod.addActionListener(new java.awt.event.ActionListener() {
@@ -95,29 +98,34 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel3.setText("Duração(min)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txCod, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txCod, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1))
+                    .addComponent(jLabel3)
+                    .addComponent(txDura, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,10 +142,14 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txDura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -151,16 +163,21 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limparMsg();
         String sql;
+        if(!StringUtil.isNotNullOrEmpty(txDura.getText())){
+            labelRegistro.setText("Informe a duração");
+            return;
+        }
+        
         if (!StringUtil.isNotNullOrEmpty(txCod.getText())) {
-            sql = String.format("INSERT INTO MATERIAL (MAT_DESCRICAO) VALUES ('%s')",
-                    txDesc.getText());
+            sql = String.format("INSERT INTO ATIVIDADE (ATV_DESCRICAO, ATV_DURACAO) VALUES ('%s', '%s')",
+                    txDesc.getText(), txDura.getText());
             labelRegistro.setText("Registro Incluído com Sucesso");
         }else{
-            sql = String.format("UPDATE MATERIAL SET MAT_DESCRICAO = '%s'", txDesc.getText());
+            sql = String.format("UPDATE ATIVIDADE SET ATV_DESCRICAO = '%s', ATV_DURACAO = '%s'", txDesc.getText(), txDura.getText());
             labelRegistro.setText("Registro Alterado com Sucesso");
         }
         com.executarUpdate(sql);
-        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM MATERIAL");
+        com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ATIVIDADE");
         limparCampos();
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -168,9 +185,12 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         StringBuilder busca = new StringBuilder();
-        busca.append("SELECT * FROM MATERIAL ");
+        busca.append("SELECT * FROM ATIVIDADE WHERE ATV_ID > 0");
         if (StringUtil.isNotNullOrEmpty(this.txDesc.getText())) {
-            busca.append(" WHERE MAT_DESCRICAO = '").append(this.txDesc.getText()).append("'");
+            busca.append(" AND ATV_DESCRICAO = '").append(this.txDesc.getText()).append("'");
+        }
+        if (StringUtil.isNotNullOrEmpty(this.txDura.getText())) {
+            busca.append(" AND ATV_DURACAO = ").append(this.txDura.getText());
         }
         com.buscaValoresEPreencheTabela(jTable1, busca.toString());
         limparMsg();
@@ -180,8 +200,8 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limparMsg();
         if (StringUtil.isNotNullOrEmpty(txCod.getText())) {
-            com.executarUpdate("DELETE FROM MATERIAL WHERE MAT_ID = " + txCod.getText());
-            com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM MATERIAL");
+            com.executarUpdate("DELETE FROM ATIVIDADE WHERE ATV_ID = " + txCod.getText());
+            com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ATIVIDADE");
             limparCampos();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -198,6 +218,7 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
     private void limparCampos() {
         this.txCod.setText("");
         this.txDesc.setText("");
+        this.txDura.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,10 +227,12 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelRegistro;
     private javax.swing.JTextField txCod;
     private javax.swing.JTextField txDesc;
+    private javax.swing.JTextField txDura;
     // End of variables declaration//GEN-END:variables
 }
