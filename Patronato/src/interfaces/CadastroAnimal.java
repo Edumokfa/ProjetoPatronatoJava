@@ -99,6 +99,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         cbPorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "M", "G" }));
 
         txCodigo.setEditable(false);
+        txCodigo.setEnabled(false);
 
         jLabel6.setText("Codigo");
 

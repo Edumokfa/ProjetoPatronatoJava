@@ -99,6 +99,8 @@ public class Comunicacao {
         DefaultTableModel tb = new DefaultTableModel();
         for (Map.Entry<List<String>, List<List<String>>> valores : retorno.entrySet()) {
             for (String coluna : valores.getKey()) {
+                coluna = coluna.replace("PRAT_", "");
+                coluna = coluna.replace("PES_", "");
                 tb.addColumn(coluna);
             }
             for (List<String> list : valores.getValue()) {

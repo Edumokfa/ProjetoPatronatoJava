@@ -117,6 +117,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         });
 
         txCodigo.setEditable(false);
+        txCodigo.setEnabled(false);
         txCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txCodigoActionPerformed(evt);
@@ -152,6 +153,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         txPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         txCodigoPessoa.setEditable(false);
+        txCodigoPessoa.setEnabled(false);
 
         jLabel14.setText("Pessoa");
 
@@ -173,11 +175,9 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                             .addComponent(txEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel5)
                             .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
@@ -302,8 +302,8 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                     txAltura.getText(), txPeso.getText(), txCodigo.getText());
             com.executarUpdate(atualizaPrat);
             String txSexo = radioFem.isSelected() ? "F" : "M";
-            String atualizaPessoa = String.format("UPDATE PESSOA SET PES_NOME = '%s', PES_CPF = '%s', PES_EMAIL1 = '%s', PES_EMAIL2 = '%s',PES_LOGIN_PASSWORD = '%s',PES_SEXO = '%s',PES_DATA_NASC = '%s'",
-                    txNome.getText(), txCpf.getText(), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo, txData.getText());
+            String atualizaPessoa = String.format("UPDATE PESSOA SET PES_NOME = '%s', PES_CPF = '%s', PES_EMAIL1 = '%s', PES_EMAIL2 = '%s',PES_LOGIN_PASSWORD = '%s',PES_SEXO = '%s',PES_DATA_NASC = '%s' WHERE PES_ID = %s",
+                    txNome.getText(), txCpf.getText(), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo, txData.getText(),txCodigoPessoa.getText());
             com.executarUpdate(atualizaPessoa);
         } else {
             String txSexo = radioFem.isSelected() ? "F" : "M";
@@ -324,7 +324,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String txSexo = radioFem.isSelected() ? "F" : "M";
         StringBuilder busca = new StringBuilder();
-        busca.append(" SELECT * FROM PRATICANTE");
+        busca.append(" SELECT PR.PRAT_ID,PR.PRAT_ALTURA,PR.PRAT_PESO,P.* FROM PRATICANTE");
         busca.append(" LEFT JOIN PESSOA P ON PES_ID = PRAT_ID_PESSOA");
         busca.append(" WHERE P.PES_SEXO = '").append(txSexo).append("'");
         if (StringUtil.isNotNullOrEmpty(txData.getText())) {
@@ -346,7 +346,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
             busca.append(" AND P.PES_NOME LIKE '%").append(txNome.getText()).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txAltura.getText())) {
-            busca.append(" AND PRAT_ALTURA = ").append(txAltura.getText()).append("'=");
+            busca.append(" AND PRAT_ALTURA = ").append(txAltura.getText()).append("");
         }
         if (StringUtil.isNotNullOrEmpty(txPeso.getText())) {
             busca.append(" AND PRAT_PESO = ").append(txPeso.getText()).append("");

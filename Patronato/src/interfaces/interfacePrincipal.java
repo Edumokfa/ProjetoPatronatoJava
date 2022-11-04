@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -40,14 +34,6 @@ public class interfacePrincipal extends javax.swing.JFrame {
     //Retorna a cor para o cinza escuro
     void resetColor(JPanel panel) {
         panel.setBackground(new Color(146, 165, 146));
-    }
-
-    //Centraliza o internalFrame no painel da área de trabalho
-    private void centralizaForm(CadastroAnimal frame) {
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension jInternalFrameSize = frame.getSize();
-        frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-                (desktopSize.height - jInternalFrameSize.height) / 2);
     }
 
     @SuppressWarnings("unchecked")
@@ -389,12 +375,13 @@ public class interfacePrincipal extends javax.swing.JFrame {
     private void funcionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionarioMouseClicked
         // TODO add your handling code here:
         setColor(funcionario);
-        resetColor(animal);
         resetColor(praticante);
+        resetColor(animal);
         resetColor(atividade);
+        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+        jDesktopPane1.add(cadastroFuncionario);
+        cadastroFuncionario.setVisible(true);
         resetColor(material);
-        resetColor(sessao);
-        resetColor(funcionario);
     }//GEN-LAST:event_funcionarioMouseClicked
 
     private void funcionarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionarioMouseEntered
@@ -428,7 +415,6 @@ public class interfacePrincipal extends javax.swing.JFrame {
         CadastroPraticante cadastroPraticante = new CadastroPraticante();
         jDesktopPane1.add(cadastroPraticante);
         cadastroPraticante.setVisible(true);
-        resetColor(praticante);
         resetColor(material);
     }//GEN-LAST:event_praticanteMouseClicked
 
