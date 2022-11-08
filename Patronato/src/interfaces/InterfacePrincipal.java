@@ -481,7 +481,6 @@ public class interfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_atividadeMousePressed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
         jDesktopPane1.removeAll();
     }//GEN-LAST:event_jPanel1MouseClicked
     private void materialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMouseClicked

@@ -1,6 +1,8 @@
 package interfaces;
 
 import Utils.StringUtil;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import patronato.Comunicacao;
@@ -18,8 +20,8 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
      */
     public MovimentoSessao() {
         initComponents();
-        
-        com.buscaValoresEPreencheTabela(tableSessao, "SELECT * FROM SESSAO");
+
+        atualizaRegistros();
 
         ListSelectionModel model = tableSessao.getSelectionModel();
         model.addListSelectionListener((ListSelectionEvent event) -> {
@@ -70,6 +72,8 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        txCodAtiv = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +236,14 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
             }
         });
 
+        txCodAtiv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txCodAtivActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Código Atividade");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -257,8 +269,8 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3)
-                            .addComponent(ftData, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ftData, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -276,15 +288,21 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
                                 .addComponent(jButton7))
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txCodAni, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton5))
-                            .addComponent(jLabel6)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txCodFunc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton4))
-                            .addComponent(jLabel7))))
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txCodAni, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txCodAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(jButton5))
+                                    .addComponent(jLabel8))))))
                 .addContainerGap(830, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -323,11 +341,17 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txCodAni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(2, 2, 2)
+                                .addComponent(txCodAni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txCodAtiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton5))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -358,7 +382,7 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
         );
 
         pack();
@@ -367,20 +391,20 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limparMsg();
         String sql;
-        if(!StringUtil.isNotNullOrEmpty(ftData.getText())){
+        if (!StringUtil.isNotNullOrEmpty(ftData.getText())) {
             labelRegistro.setText("Informe a data");
             return;
         }
-        
+
         if (!StringUtil.isNotNullOrEmpty(txCod.getText())) {
             sql = String.format("INSERT INTO SESSAO (SES_DESCRICAO, SES_DATA) VALUES ('%s', '%s')",
                     txDesc.getText(), ftData.getText());
-                        labelRegistro.setText("Registro Incluído com Sucesso");
-        }else{
-            sql = String.format("UPDATE ATIVIDADE SET SES_DESCRICAO = '%s', SES_DATA = '%s' WHERE SES_ID = %s", txDesc.getText(),ftData.getText(),txCod.getText());
+            labelRegistro.setText("Registro Incluído com Sucesso");
+        } else {
+            sql = String.format("UPDATE ATIVIDADE SET SES_DESCRICAO = '%s', SES_DATA = '%s' WHERE SES_ID = %s", txDesc.getText(), ftData.getText(), txCod.getText());
             labelRegistro.setText("Registro Alterado com Sucesso");
         }
-        
+
         com.executarUpdate(sql);
         com.buscaValoresEPreencheTabela(tableSessao, "SELECT * FROM SESSAO");
         limparCampos();
@@ -388,21 +412,9 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-//        StringBuilder busca = new StringBuilder();
-//        busca.append("SELECT * FROM ATIVIDADE WHERE ATV_ID > 0");
-//        if (StringUtil.isNotNullOrEmpty(this.txDesc.getText())) {
-//            busca.append(" AND ATV_DESCRICAO = '").append(this.txDesc.getText()).append("'");
-//        }
-//        if (StringUtil.isNotNullOrEmpty(this.txDura.getText())) {
-//            busca.append(" AND ATV_DURACAO = ").append(this.txDura.getText());
-//        }
-//        com.buscaValoresEPreencheTabela(jTable1, busca.toString());
-//        limparMsg();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         limparMsg();
         if (StringUtil.isNotNullOrEmpty(txCod.getText())) {
             com.executarUpdate("DELETE FROM SESSAO WHERE SES_ID = " + txCod.getText());
@@ -432,48 +444,107 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txCodFuncActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if(txCod.getText() != null && txCodMat.getText() != null){
-            com.executarUpdate(String.format("INSERT INTO SESSAOXMATERIAL (SXM_COD_SESSAO,SXM_COD_MATERIAL) VALUES (%s, %s)",txCod.getText(), txCodMat.getText()));
+        geraCodigoSeNaoPossui();
+        if (StringUtil.isNotNullOrEmpty(txCod.getText()) && StringUtil.isNotNullOrEmpty(txCodMat.getText())) {
+            try {
+                com.executarUpdate(String.format("INSERT INTO SESSAOXMATERIAL (SXM_COD_SESSAO,SXM_COD_MATERIAL) VALUES (%s, %s)", txCod.getText(), txCodMat.getText()));
+                atualizaRegistros();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum material este código");
+            }
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void geraCodigoSeNaoPossui() {
+        if (!StringUtil.isNotNullOrEmpty(txCod.getText())) {
+            if (!StringUtil.isNotNullOrEmpty(txDesc.getText())) {
+                JOptionPane.showMessageDialog(null, "Não é possível gerar um registro sem descrição");
+                return;
+            }
+            if (!StringUtil.isNotNullOrEmpty(ftData.getText())) {
+                JOptionPane.showMessageDialog(null, "Não é possível gerar um registro sem data");
+                return;
+            }
+            com.executarUpdate(String.format("INSERT INTO SESSAO (SES_DESCRICAO,SES_DATA) VALUES ('%s', '%s')", txDesc.getText(), ftData.getText()));
+            txCod.setText(com.getCodigo(String.format("SELECT SES_ID FROM SESSAO WHERE SES_DESCRICAO = '%s' AND SES_DATA = '%s'", txDesc.getText(), ftData.getText()), "SES_ID").toString());
+            atualizaRegistros();
+        }
+    }
+
+    private void atualizaRegistros() {
+        com.buscaValoresEPreencheTabela(tableSessao, "SELECT * FROM SESSAO");
+        if (StringUtil.isNotNullOrEmpty(txCod.getText())) {
+            com.buscaValoresEPreencheTabela(tableMat, "SELECT M.* FROM MATERIAL M LEFT JOIN sessaoxmaterial SM ON SM.SXM_COD_MATERIAL = M.MAT_ID WHERE SM.SXM_COD_SESSAO = " + txCod.getText());
+            com.buscaValoresEPreencheTabela(tablePrat, "SELECT P.* FROM PRATICANTE P LEFT JOIN sessaoxpraticante SM ON SM.SXP_COD_PRATICANTE = P.PRAT_ID WHERE SM.SXP_COD_SESSAO = " + txCod.getText());
+            com.buscaValoresEPreencheTabela(tableFunc, "SELECT F.* FROM FUNCIONARIO F LEFT JOIN sessaoxfuncionario SF ON SF.SXF_COD_FUNCIONARIO = F.FUNC_ID WHERE SF.SXF_COD_SESSAO = " + txCod.getText());
+            com.buscaValoresEPreencheTabela(tableAni, "SELECT A.*,ATIV.* FROM SESSAOXANIMALXATIVIDADE SM LEFT JOIN ANIMAL A ON A.ANI_ID = SM.SXA_COD_ANIMAL LEFT JOIN ATIVIDADE ATIV ON ATIV.ATV_ID = SXA_COD_ATIVIDADE WHERE SM.SXA_COD_SESSAO = " + txCod.getText());
+        }
+    }
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if(txCod.getText() != null && txCodPrat.getText() != null){
-            com.executarUpdate(String.format("INSERT INTO SESSAOXPRATICANTE (SXP_COD_SESSAO,SXP_COD_PRATICANTE) VALUES (%s, %s)",txCod.getText(), txCodPrat.getText()));
+        geraCodigoSeNaoPossui();
+        if (StringUtil.isNotNullOrEmpty(txCod.getText()) && StringUtil.isNotNullOrEmpty(txCodPrat.getText())) {
+            try {
+                com.executarUpdate(String.format("INSERT INTO SESSAOXPRATICANTE (SXP_COD_SESSAO,SXP_COD_PRATICANTE) VALUES (%s, %s)", txCod.getText(), txCodPrat.getText()));
+                atualizaRegistros();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum praticante este código");
+            }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(txCod.getText() != null && txCodAni.getText() != null){
-            com.executarUpdate(String.format("INSERT INTO SESSAOXPRATICANTE (SXP_COD_SESSAO,SXP_COD_PRATICANTE) VALUES (%s, %s)",txCod.getText(), txCodAni.getText()));
+        geraCodigoSeNaoPossui();
+        if (StringUtil.isNotNullOrEmpty(txCod.getText()) && StringUtil.isNotNullOrEmpty(txCodAni.getText())) {
+            try {
+                com.executarUpdate(String.format("INSERT INTO SESSAOXANIMALXATIVIDADE (SXA_COD_SESSAO,SXA_COD_ANIMAL,SXA_COD_ATIVIDADE) VALUES (%s,%s,%s)", txCod.getText(), txCodAni.getText(), txCodAtiv.getText()));
+                atualizaRegistros();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum animal ou sessão com este código");
+            }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(txCod.getText() != null && txCodFunc.getText() != null){
-            com.executarUpdate(String.format("INSERT INTO SESSAOXFUNCIONARIO (SXF_COD_SESSAO,SXF_COD_FUNCIONARIO) VALUES (%s, %s)",txCod.getText(), txCodFunc.getText()));
+        geraCodigoSeNaoPossui();
+        if (StringUtil.isNotNullOrEmpty(txCod.getText()) && StringUtil.isNotNullOrEmpty(txCodFunc.getText())) {
+            try {
+                com.executarUpdate(String.format("INSERT INTO SESSAOXFUNCIONARIO (SXF_COD_SESSAO,SXF_COD_FUNCIONARIO) VALUES (%s, %s)", txCod.getText(), txCodFunc.getText()));
+                atualizaRegistros();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi encontrado nenhum funcionário este código");
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    public void limparMsg(){
+    private void txCodAtivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCodAtivActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txCodAtivActionPerformed
+
+    public void limparMsg() {
         this.labelRegistro.setText("");
     }
-    
-    private void buscaValoresSessao(){
-        if(txCod.getText() != null){
-            com.buscaValoresEPreencheTabela(tableMat, "SELECT * FROM SESSAOXMATERIAL WHERE SXM_COD_SESSAO = " + txCod.getText());
-            com.buscaValoresEPreencheTabela(tableFunc, "SELECT * FROM SESSAOXFUNCIONARIO WHERE SXF_COD_SESSAO = " + txCod.getText());
-            com.buscaValoresEPreencheTabela(tableAni, "SELECT * FROM SESSAOXCAVALOXATIVIDADE WHERE SXCA_COD_SESSAO = " + txCod.getText());
-            com.buscaValoresEPreencheTabela(tablePrat, "SELECT * FROM SESSAOXPRATICANTE WHERE SXCA_COD_SESSAO = " + txCod.getText());
-        }
+
+    private void buscaValoresSessao() {
+        atualizaRegistros();
     }
-    
+
     private void limparCampos() {
-//        this.txCod.setText("");
-//        this.txDesc.setText("");
-//        this.txDura.setText("");
+        this.txCod.setText("");
+        this.txDesc.setText("");
+        this.ftData.setText("");
+        txCodAni.setText("");
+        txCodAtiv.setText("");
+        txCodFunc.setText("");
+        txCodMat.setText("");
+        txCodPrat.setText("");
+        tableAni = new JTable();
+        tableFunc = new JTable();
+        tableMat = new JTable();
+        tablePrat = new JTable();
+        tableSessao = new JTable();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ftData;
     private javax.swing.JButton jButton1;
@@ -490,6 +561,7 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -505,6 +577,7 @@ public class MovimentoSessao extends javax.swing.JInternalFrame {
     private javax.swing.JTable tableSessao;
     private javax.swing.JTextField txCod;
     private javax.swing.JTextField txCodAni;
+    private javax.swing.JTextField txCodAtiv;
     private javax.swing.JTextField txCodFunc;
     private javax.swing.JTextField txCodMat;
     private javax.swing.JTextField txCodPrat;

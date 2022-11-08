@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Computação
  */
 public class Comunicacao {
-
+    
     private Connection conectar() {
         String url = "jdbc:mysql://localhost:3306/BDI";
         String username = "root";

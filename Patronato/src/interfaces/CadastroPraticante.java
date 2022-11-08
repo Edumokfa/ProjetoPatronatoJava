@@ -56,7 +56,6 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         txCodigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txCpf = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -73,6 +72,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         txPeso = new javax.swing.JFormattedTextField();
         txCodigoPessoa = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        txCpf = new javax.swing.JFormattedTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,6 +157,12 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Pessoa");
 
+        try {
+            txCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,17 +183,15 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(63, 63, 63)
-                                .addComponent(jLabel13))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(336, 336, 336))
+                            .addComponent(txAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(txPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(330, 330, 330))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -205,7 +209,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addComponent(txCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -234,10 +238,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -250,7 +251,9 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,9 +279,9 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,7 +291,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -303,15 +306,15 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
             com.executarUpdate(atualizaPrat);
             String txSexo = radioFem.isSelected() ? "F" : "M";
             String atualizaPessoa = String.format("UPDATE PESSOA SET PES_NOME = '%s', PES_CPF = '%s', PES_EMAIL1 = '%s', PES_EMAIL2 = '%s',PES_LOGIN_PASSWORD = '%s',PES_SEXO = '%s',PES_DATA_NASC = '%s' WHERE PES_ID = %s",
-                    txNome.getText(), txCpf.getText(), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo, txData.getText(),txCodigoPessoa.getText());
+                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo, txData.getText(),txCodigoPessoa.getText());
             com.executarUpdate(atualizaPessoa);
         } else {
             String txSexo = radioFem.isSelected() ? "F" : "M";
             String insere = String.format("INSERT INTO PESSOA (PES_NOME, PES_CPF, PES_EMAIL1, PES_EMAIL2, PES_LOGIN_PASSWORD,PES_SEXO,PES_DATA_NASC) "
                     + "VALUES ('%s','%s','%s','%s','%s','%s','%s')",
-                    txNome.getText(), txCpf.getText(), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo,txData.getText());
+                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo,txData.getText());
             com.executarUpdate(insere);
-            Integer cod = com.getCodigo("SELECT PES_ID FROM PESSOA WHERE PES_CPF = "+ txCpf.getText(), "PES_ID");
+            Integer cod = com.getCodigo("SELECT PES_ID FROM PESSOA WHERE PES_CPF = "+ StringUtil.removeSinais(txCpf.getText()), "PES_ID");
             String inserePrat = String.format("INSERT INTO PRATICANTE (PRAT_ID_PESSOA, PRAT_ALTURA, PRAT_PESO) "
                     + "VALUES (%s,%s,%s)",
                     cod, txAltura.getText(), txPeso.getText());
@@ -340,7 +343,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
             busca.append(" AND P.PES_EMAIL2 LIKE '%").append(txEmail2.getText()).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txCpf.getText())) {
-            busca.append(" AND P.PES_CPF LIKE '%").append(txCpf.getText()).append("%'");
+            busca.append(" AND P.PES_CPF LIKE '%").append(StringUtil.removeSinais(txCpf.getText())).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
             busca.append(" AND P.PES_NOME LIKE '%").append(txNome.getText()).append("%'");
@@ -403,7 +406,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txAltura;
     private javax.swing.JTextField txCodigo;
     private javax.swing.JTextField txCodigoPessoa;
-    private javax.swing.JTextField txCpf;
+    private javax.swing.JFormattedTextField txCpf;
     private javax.swing.JFormattedTextField txData;
     private javax.swing.JTextField txEmail;
     private javax.swing.JTextField txEmail2;
