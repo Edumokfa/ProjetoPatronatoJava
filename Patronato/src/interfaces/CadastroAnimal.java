@@ -21,6 +21,11 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         model.addListSelectionListener((ListSelectionEvent event) -> {
             if (!model.isSelectionEmpty()) {
                 txCodigo.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                txIdade.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString());
+                txNome.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 2).toString());
+                cbPorte.setSelectedItem(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                txComportamento.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 4).toString());
+                txAndadura.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 5).toString());
             }
         });
     }
@@ -94,7 +99,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
         cbPorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P", "M", "G" }));
 
         txCodigo.setEditable(false);
-        txCodigo.setOpaque(true);
+        txCodigo.setEnabled(false);
 
         jLabel6.setText("Codigo");
 
@@ -120,11 +125,15 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txAndadura, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6)
-                                .addComponent(cbPorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6))
+                                    .addGap(18, 18, 18))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(cbPorte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(17, 17, 17)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +182,7 @@ public class CadastroAnimal extends javax.swing.JInternalFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

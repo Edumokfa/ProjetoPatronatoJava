@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Computação
  */
 public class Comunicacao {
-
+    
     private Connection conectar() {
         String url = "jdbc:mysql://localhost:3306/BDI";
         String username = "root";
@@ -31,6 +31,19 @@ public class Comunicacao {
         }
     }
 
+    public Integer getCodigo(String sql, String campoCod){
+        Connection conn = conectar();
+        Integer codigo = 0;
+        try {
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            while (rs.next()) {
+                codigo = rs.getInt(campoCod);
+            }
+        }catch(Exception e){
+        }
+        return codigo;
+    }
+    
     public Map<List<String>, List<List<String>>> executarSql(String sql) {
         Map<List<String>, List<List<String>>> mapa = new HashMap<>();
         Connection conn = conectar();
@@ -86,6 +99,8 @@ public class Comunicacao {
         DefaultTableModel tb = new DefaultTableModel();
         for (Map.Entry<List<String>, List<List<String>>> valores : retorno.entrySet()) {
             for (String coluna : valores.getKey()) {
+                coluna = coluna.replace("PRAT_", "");
+                coluna = coluna.replace("PES_", "");
                 tb.addColumn(coluna);
             }
             for (List<String> list : valores.getValue()) {
