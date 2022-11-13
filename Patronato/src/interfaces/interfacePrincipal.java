@@ -419,7 +419,6 @@ public class interfacePrincipal extends javax.swing.JFrame {
             resetColor(funcionario);
             resetColor(praticante);
             resetColor(atividade);
-            resetColor(material);
             CadastroAnimal cadastroAnimal = new CadastroAnimal();
             jDesktopPane1.add(cadastroAnimal);
             cadastroAnimal.setVisible(true);
@@ -465,15 +464,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void materialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMouseClicked
-        // TODO add your handling code here:]
-        setColor(material);
-        resetColor(funcionario);
-        resetColor(animal);
-        resetColor(praticante);
-        resetColor(atividade);
-        CadastroMaterial cadastroMaterial = new CadastroMaterial();
-        jDesktopPane1.add(cadastroMaterial);
-        cadastroMaterial.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_materialMouseClicked
 
     private void materialMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialMouseEntered
