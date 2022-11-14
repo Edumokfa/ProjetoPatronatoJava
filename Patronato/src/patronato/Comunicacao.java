@@ -1,5 +1,6 @@
 package patronato;
 
+import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Computação
  */
 public class Comunicacao {
-    
+
     private Connection conectar() {
         String url = "jdbc:mysql://localhost:3306/BDI";
         String username = "root";
@@ -31,7 +32,7 @@ public class Comunicacao {
         }
     }
 
-    public Integer getCodigo(String sql, String campoCod){
+    public Integer getCodigo(String sql, String campoCod) {
         Connection conn = conectar();
         Integer codigo = 0;
         try {
@@ -39,11 +40,11 @@ public class Comunicacao {
             while (rs.next()) {
                 codigo = rs.getInt(campoCod);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
         }
         return codigo;
     }
-    
+
     public Map<List<String>, List<List<String>>> executarSql(String sql) {
         Map<List<String>, List<List<String>>> mapa = new HashMap<>();
         Connection conn = conectar();
@@ -84,7 +85,7 @@ public class Comunicacao {
         try {
             conn.createStatement().executeUpdate(sql);
         } catch (SQLException e) {
-            System.err.println(e);
+            throw new RuntimeException(e);
         } finally {
             try {
                 conn.close();

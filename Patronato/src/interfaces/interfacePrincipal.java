@@ -1,26 +1,26 @@
 package interfaces;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Pedro
- */
 public class interfacePrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form interfacePrincipal
-     */
-    int cod, id;
-    String nome, email;
-    String Status, StatusIniciada;
-    int idRodada, idRodadaIniciada, comprasRodada;
+    MovimentoSessao movimentoSessao = new MovimentoSessao();
+    CadastroAnimal cadastroAnimal = new CadastroAnimal();
+    CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+    CadastroPraticante cadastroPraticante = new CadastroPraticante();
+    CadastroMaterial cadastroMaterial = new CadastroMaterial();
+    CadastroAtividade cadastroAtividade = new CadastroAtividade();
 
-    List lista = new ArrayList();
-    List lista2 = new ArrayList();
+    private void fechaTelas() {
+        movimentoSessao.setVisible(false);
+        cadastroAnimal.setVisible(false);
+        cadastroFuncionario.setVisible(false);
+        cadastroPraticante.setVisible(false);
+        cadastroAtividade.setVisible(false);
+        cadastroMaterial.setVisible(false);
+        jDesktopPane1.removeAll();
+    }
 
     public interfacePrincipal() {
         initComponents();
@@ -378,7 +378,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(praticante);
         resetColor(animal);
         resetColor(atividade);
-        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
+        fechaTelas();
         jDesktopPane1.add(cadastroFuncionario);
         cadastroFuncionario.setVisible(true);
         resetColor(material);
@@ -407,12 +407,12 @@ public class interfacePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_funcionarioMouseReleased
 
     private void praticanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_praticanteMouseClicked
-        // TODO add your handling code here:
         setColor(praticante);
         resetColor(funcionario);
         resetColor(animal);
         resetColor(atividade);
-        CadastroPraticante cadastroPraticante = new CadastroPraticante();
+        resetColor(sessao);
+        fechaTelas();
         jDesktopPane1.add(cadastroPraticante);
         cadastroPraticante.setVisible(true);
         resetColor(material);
@@ -436,7 +436,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(atividade);
         resetColor(material);
         resetColor(sessao);
-        CadastroAnimal cadastroAnimal = new CadastroAnimal();
+        fechaTelas();
         jDesktopPane1.add(cadastroAnimal);
         cadastroAnimal.setVisible(true);
 
@@ -464,7 +464,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(praticante);
         resetColor(material);
         resetColor(sessao);
-        CadastroAtividade cadastroAtividade = new CadastroAtividade();
+        fechaTelas();
         jDesktopPane1.add(cadastroAtividade);
         cadastroAtividade.setVisible(true);
     }//GEN-LAST:event_atividadeMouseClicked
@@ -493,7 +493,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(praticante);
         resetColor(atividade);
         resetColor(sessao);
-        CadastroMaterial cadastroMaterial = new CadastroMaterial();
+        fechaTelas();
         jDesktopPane1.add(cadastroMaterial);
         cadastroMaterial.setVisible(true);
     }//GEN-LAST:event_materialMouseClicked
@@ -518,8 +518,7 @@ public class interfacePrincipal extends javax.swing.JFrame {
         resetColor(praticante);
         resetColor(atividade);
         resetColor(material);
-
-        MovimentoSessao movimentoSessao = new MovimentoSessao();
+        fechaTelas();
         jDesktopPane1.add(movimentoSessao);
         movimentoSessao.setVisible(true);
     }//GEN-LAST:event_sessaoMouseClicked

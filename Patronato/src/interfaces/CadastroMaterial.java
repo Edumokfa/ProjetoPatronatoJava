@@ -6,6 +6,7 @@
 package interfaces;
 
 import Utils.StringUtil;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import patronato.Comunicacao;
@@ -23,7 +24,7 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
      */
     public CadastroMaterial() {
         initComponents();
-        
+
         com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM MATERIAL");
 
         ListSelectionModel model = jTable1.getSelectionModel();
@@ -149,13 +150,17 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!StringUtil.isNotNullOrEmpty(txDesc.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Descrição é obrigatório");
+            return;
+        }
         limparMsg();
         String sql;
         if (!StringUtil.isNotNullOrEmpty(txCod.getText())) {
             sql = String.format("INSERT INTO MATERIAL (MAT_DESCRICAO) VALUES ('%s')",
                     txDesc.getText());
             labelRegistro.setText("Registro Incluído com Sucesso");
-        }else{
+        } else {
             sql = String.format("UPDATE MATERIAL SET MAT_DESCRICAO = '%s'", txDesc.getText());
             labelRegistro.setText("Registro Alterado com Sucesso");
         }
@@ -190,16 +195,15 @@ public class CadastroMaterial extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txCodActionPerformed
 
-    public void limparMsg(){
+    public void limparMsg() {
         this.labelRegistro.setText("");
     }
-    
-    
+
     private void limparCampos() {
         this.txCod.setText("");
         this.txDesc.setText("");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

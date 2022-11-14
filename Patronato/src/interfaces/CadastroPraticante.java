@@ -1,6 +1,7 @@
 package interfaces;
 
 import Utils.StringUtil;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import patronato.Comunicacao;
@@ -16,7 +17,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
     public CadastroPraticante() {
         initComponents();
         com.buscaValoresEPreencheTabela(jTable1, "SELECT PR.PRAT_ID,PR.PRAT_ALTURA,PR.PRAT_PESO,P.* FROM PRATICANTE PR LEFT JOIN PESSOA P ON PES_ID = PRAT_ID_PESSOA ");
-
+        radioMasc.setSelected(true);
         ListSelectionModel model = jTable1.getSelectionModel();
         model.addListSelectionListener((ListSelectionEvent event) -> {
             if (!model.isSelectionEmpty()) {
@@ -30,9 +31,9 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
                 txEmail2.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 7).toString());
                 txSenha.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 8).toString());
                 boolean masc = jTable1.getValueAt(jTable1.getSelectedRow(), 9).toString().equals("M");
-                if(masc){
+                if (masc) {
                     radioMasc.setSelected(true);
-                }else{
+                } else {
                     radioFem.setSelected(true);
                 }
                 txData.setText(jTable1.getValueAt(jTable1.getSelectedRow(), 10).toString());
@@ -300,21 +301,48 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!StringUtil.isNotNullOrEmpty(txNome.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório");
+            return;
+        }
+        if (!StringUtil.isNotNullOrEmpty(StringUtil.removeSinais(txCpf.getText()).replace(" ", ""))) {
+            JOptionPane.showMessageDialog(null, "O campo CPF é obrigatório");
+            return;
+        }
+        if (!StringUtil.isNotNullOrEmpty(txData.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Data de nascimento é obrigatório");
+            return;
+        }
+        if (!StringUtil.isNotNullOrEmpty(txEmail.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Email é obrigatório");
+            return;
+        }
+        if (!StringUtil.isNotNullOrEmpty(txAltura.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Altura é obrigatório");
+            return;
+        }
+        if (!StringUtil.isNotNullOrEmpty(txPeso.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo Peso é obrigatório");
+            return;
+        }
+        String txSexo = radioFem.isSelected() ? "F" : "M";
         if (StringUtil.isNotNullOrEmpty(txCodigo.getText())) {
             String atualizaPrat = String.format("UPDATE PRATICANTE SET PRAT_ALTURA = '%s', PRAT_PESO = '%s' WHERE PRAT_ID = %s",
                     txAltura.getText(), txPeso.getText(), txCodigo.getText());
             com.executarUpdate(atualizaPrat);
-            String txSexo = radioFem.isSelected() ? "F" : "M";
             String atualizaPessoa = String.format("UPDATE PESSOA SET PES_NOME = '%s', PES_CPF = '%s', PES_EMAIL1 = '%s', PES_EMAIL2 = '%s',PES_LOGIN_PASSWORD = '%s',PES_SEXO = '%s',PES_DATA_NASC = '%s' WHERE PES_ID = %s",
-                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo, txData.getText(),txCodigoPessoa.getText());
+                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(), txSexo, txData.getText(), txCodigoPessoa.getText());
             com.executarUpdate(atualizaPessoa);
         } else {
-            String txSexo = radioFem.isSelected() ? "F" : "M";
+            if (com.getCodigo("SELECT * FROM pessoa  where pes_cpf = '" + StringUtil.removeSinais(txCpf.getText()) + "'", "pes_id") != 0) {
+                JOptionPane.showMessageDialog(null, "Já existe uma pessoa com este CPF cadastrado");
+                return;
+            }
             String insere = String.format("INSERT INTO PESSOA (PES_NOME, PES_CPF, PES_EMAIL1, PES_EMAIL2, PES_LOGIN_PASSWORD,PES_SEXO,PES_DATA_NASC) "
                     + "VALUES ('%s','%s','%s','%s','%s','%s','%s')",
-                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(),txSexo,txData.getText());
+                    txNome.getText(), StringUtil.removeSinais(txCpf.getText()), txEmail.getText(), txEmail2.getText(), txSenha.getText(), txSexo, txData.getText());
             com.executarUpdate(insere);
-            Integer cod = com.getCodigo("SELECT PES_ID FROM PESSOA WHERE PES_CPF = "+ StringUtil.removeSinais(txCpf.getText()), "PES_ID");
+            Integer cod = com.getCodigo("SELECT PES_ID FROM PESSOA WHERE PES_CPF = " + StringUtil.removeSinais(txCpf.getText()), "PES_ID");
             String inserePrat = String.format("INSERT INTO PRATICANTE (PRAT_ID_PESSOA, PRAT_ALTURA, PRAT_PESO) "
                     + "VALUES (%s,%s,%s)",
                     cod, txAltura.getText(), txPeso.getText());
@@ -327,7 +355,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String txSexo = radioFem.isSelected() ? "F" : "M";
         StringBuilder busca = new StringBuilder();
-        busca.append(" SELECT PR.PRAT_ID,PR.PRAT_ALTURA,PR.PRAT_PESO,P.* FROM PRATICANTE");
+        busca.append(" SELECT PR.PRAT_ID,PR.PRAT_ALTURA,PR.PRAT_PESO,P.* FROM PRATICANTE PR");
         busca.append(" LEFT JOIN PESSOA P ON PES_ID = PRAT_ID_PESSOA");
         busca.append(" WHERE P.PES_SEXO = '").append(txSexo).append("'");
         if (StringUtil.isNotNullOrEmpty(txData.getText())) {
@@ -342,7 +370,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         if (StringUtil.isNotNullOrEmpty(txEmail2.getText())) {
             busca.append(" AND P.PES_EMAIL2 LIKE '%").append(txEmail2.getText()).append("%'");
         }
-        if (StringUtil.isNotNullOrEmpty(txCpf.getText())) {
+        if (StringUtil.isNotNullOrEmpty(StringUtil.removeSinais(txCpf.getText()))) {
             busca.append(" AND P.PES_CPF LIKE '%").append(StringUtil.removeSinais(txCpf.getText())).append("%'");
         }
         if (StringUtil.isNotNullOrEmpty(txNome.getText())) {
@@ -368,6 +396,7 @@ public class CadastroPraticante extends javax.swing.JInternalFrame {
         txEmail2.setText("");
         txPeso.setText("");
         txCodigoPessoa.setText("");
+        radioMasc.setSelected(true);
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

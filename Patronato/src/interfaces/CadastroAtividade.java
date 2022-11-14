@@ -6,6 +6,7 @@
 package interfaces;
 
 import Utils.StringUtil;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import patronato.Comunicacao;
@@ -23,7 +24,7 @@ public class CadastroAtividade extends javax.swing.JInternalFrame {
      */
     public CadastroAtividade() {
         initComponents();
-        
+
         com.buscaValoresEPreencheTabela(jTable1, "SELECT * FROM ATIVIDADE");
 
         ListSelectionModel model = jTable1.getSelectionModel();
@@ -163,16 +164,20 @@ public class CadastroAtividade extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limparMsg();
         String sql;
-        if(!StringUtil.isNotNullOrEmpty(txDura.getText())){
-            labelRegistro.setText("Informe a duração");
+        if (!StringUtil.isNotNullOrEmpty(txDesc.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo descrição é obrigatório");
             return;
         }
-        
+        if (!StringUtil.isNotNullOrEmpty(txDura.getText())) {
+            JOptionPane.showMessageDialog(null, "O campo duração é obrigatório");
+            return;
+        }
+
         if (!StringUtil.isNotNullOrEmpty(txCod.getText())) {
             sql = String.format("INSERT INTO ATIVIDADE (ATV_DESCRICAO, ATV_DURACAO) VALUES ('%s', '%s')",
                     txDesc.getText(), txDura.getText());
             labelRegistro.setText("Registro Incluído com Sucesso");
-        }else{
+        } else {
             sql = String.format("UPDATE ATIVIDADE SET ATV_DESCRICAO = '%s', ATV_DURACAO = '%s'", txDesc.getText(), txDura.getText());
             labelRegistro.setText("Registro Alterado com Sucesso");
         }
@@ -210,17 +215,16 @@ public class CadastroAtividade extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txCodActionPerformed
 
-    public void limparMsg(){
+    public void limparMsg() {
         this.labelRegistro.setText("");
     }
-    
-    
+
     private void limparCampos() {
         this.txCod.setText("");
         this.txDesc.setText("");
         this.txDura.setText("");
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
